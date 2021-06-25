@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', setVal);
+
 
 var targetScrollPos;
 var scrollPos = 0;
@@ -7,34 +7,40 @@ var scrollInterval;
 
 var clickVal;
 
-let contentsPos01 = document.querySelector('#title').getBoundingClientRect().top + window.pageYOffset;
-let contentsPos02 = document.querySelector('#title2').getBoundingClientRect().top + window.pageYOffset;
-let contentsPos03 = document.querySelector('#title3').getBoundingClientRect().top + window.pageYOffset;
+let contentsPos01;
+let contentsPos02;
+let contentsPos03;
 
-console.log("contentsPos01=" + contentsPos01);
-console.log("contentsPos02=" + contentsPos02);
-console.log("contentsPos03=" + contentsPos03);
-
-
-let contentPosArr = [0, contentsPos01, contentsPos02, contentsPos03];
+let contentPosArr;
 
 
 let initBox = document.querySelector('#box1');
 let moonBox = document.querySelector('#twoImage');
 
-let moonInitPos = initBox.offsetTop;
+let moonInitPos;
 
-console.log("initBox"+ moonInitPos);
+
 
 let isMoonVisible = false;
 
-
+document.addEventListener('DOMContentLoaded', setVal);
 function setVal()
 {
-    console.log("loaded!!!!");
+   // console.log("loaded!!!!");
     var menu = document.querySelectorAll('#menus li');
 
-    console.log("menuLength!====" + menu.length);
+
+    console.log("contentsPos01=" + contentsPos01);
+    console.log("contentsPos02=" + contentsPos02);
+    console.log("contentsPos03=" + contentsPos03);
+
+    contentPosArr = [0, 1000, 2850, 4750];
+
+    moonInitPos = initBox.offsetTop;
+
+    //console.log("initBox"+ moonInitPos);
+
+    //console.log("menuLength!====" + menu.length);
     for( var i =0; i < menu.length; i++)
     {
         menu[i].addEventListener('click', menuClick);
@@ -60,13 +66,13 @@ window.addEventListener('scroll', scrollFn);
 
 function scrollFn()
 {
-   // console.log("scroll!!!!");
+    
     nowScrollPos = pageYOffset;
     scrollPos = nowScrollPos;
-
-    if((moonInitPos - screen.availHeight -50) < pageYOffset && !isMoonVisible)
+    //console.log("scroll!!!!"+scrollPos);
+    if(moonInitPos+200 < pageYOffset && !isMoonVisible)
     {
-        console.log("달이뜬다~");
+       // console.log("달이뜬다~"+ screen.availHeight);
         isMoonVisible = true;
         moonBox.classList.add('on');
     }
